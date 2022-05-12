@@ -100,12 +100,19 @@
                     </ul>
                 </form>
             </section>
+            <section id="question-wrapper">
+                <p id="question"></p>
+                <ul id="answers"></ul>
+            </section>
             <section id="controls">
-                <form id="buttons">
+                <form id="buttons" onsubmit="return false">
                     <button id="btn-start" class="btn-control">Starten</button>
+                    <button id="btn-check" class="btn-control">Check</button>
+                    <button id="btn-next" class="btn-control">Weiter</button>
                 </form>
             </section>
         </main>
-        <script src="script.js"></script>
+        <script src="mode.js"></script>
+        <script src="game.js"></script>
     </body>
 </html>
