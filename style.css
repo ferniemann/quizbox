@@ -57,11 +57,7 @@ main {
 }
 
 .logo {
-    background-image: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(106, 28, 195, 1) 100%
-    );
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(106, 28, 195, 1) 70%);
     display: flex;
     align-items: center;
     width: 4rem;
@@ -188,11 +184,13 @@ main {
 }
 
 .correct {
-    border-color: var(--clr-success);
+    border-color: transparent;
+    background-color: var(--clr-success);
 }
 
 .wrong {
-    border-color: var(--clr-fail);
+    border-color: transparent;
+    background-color: var(--clr-fail);
 }
 
 #controls {

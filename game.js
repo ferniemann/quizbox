@@ -104,7 +104,12 @@ function checkAnswer() {
         if (chosenAnswer === correctAnswer) {
             choiceField.classList.add("correct");
         } else if (chosenAnswer !== correctAnswer) {
+            const correctField = document.querySelector(
+                `[data-answer="${correctAnswer}"]`
+            ).parentElement;
+
             choiceField.classList.add("wrong");
+            correctField.classList.add("correct");
         }
 
         choiceField.parentElement.removeEventListener("change", highlightAnswer);
