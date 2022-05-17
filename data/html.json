@@ -1,5 +1,14 @@
 [
     {
+        "question": "Was für Inhalt könnte ein `<aside>`-Element semantisch haben?",
+        "answers": [
+            "Werbung",
+            "Die Navigation als Seitenleiste",
+            "Wichtige Ergänzungen",
+            "Hauptinhalt der Seite"
+        ]
+    },
+    {
         "question": "Wer hat HTML entwickelt?",
         "answers": ["Tim Berners Lee", "Steve Jobs", "Bill Gates", "Nico Koenig"]
     },

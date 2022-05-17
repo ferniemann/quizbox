@@ -6,6 +6,7 @@
 
 :root {
     --clr-main: hsl(268, 75%, 44%);
+    --clr-main-trans: hsla(268, 75%, 44%, 20%);
     --clr-bg: hsl(0, 0%, 90%);
     --clr-text: hsl(0, 0%, 10%);
     --clr-text-acc: hsl(0, 0%, 90%);
@@ -25,8 +26,17 @@ body {
     transition: background-color 0.2s;
 }
 
+code {
+    font-family: "Roboto Mono";
+    font-weight: 400;
+    background-color: var(--clr-main-trans);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
 body.dark {
-    --clr-main: #bc8fef;
+    --clr-main: hsl(268, 75%, 75%);
+    --clr-main-trans: hsla(268, 75%, 75%, 20%);
     --clr-bg: hsl(0, 0%, 25%);
     --clr-text: hsl(0, 0%, 90%);
     --clr-text-acc: hsl(0, 0%, 10%);
@@ -183,13 +193,17 @@ main {
     border-color: var(--clr-text);
 }
 
-.correct {
+.correct,
+.wrong {
     border-color: transparent;
+    transition: 0.2s;
+}
+
+.correct {
     background-color: var(--clr-success);
 }
 
 .wrong {
-    border-color: transparent;
     background-color: var(--clr-fail);
 }
 
@@ -221,6 +235,12 @@ main {
 @media screen and (min-width: 768px) {
     html {
         font-size: 20px;
+    }
+
+    button,
+    .answer-wrapper,
+    .answer-wrapper > * {
+        cursor: pointer;
     }
 
     .track {
@@ -255,5 +275,51 @@ main {
 
     #toggle-mode:checked + label .sun {
         fill: transparent;
+    }
+
+    #toggle-mode:focus + label .track {
+        box-shadow: var(--clr-text) 0 0 0.5rem 0.125rem;
+    }
+
+    .choose-game:focus + label,
+    .answer-input:focus + label {
+        outline: 0.125rem var(--clr-text) dotted;
+    }
+
+    .answer-wrapper {
+        position: relative;
+    }
+
+    .answer-wrapper::before {
+        position: absolute;
+        background-color: var(--clr-text);
+        color: var(--clr-bg);
+        font-size: 0.5rem;
+        width: 0.75rem;
+        height: 0.75rem;
+        text-align: center;
+        top: -0.25rem;
+        left: -0.25rem;
+        border-top-left-radius: 0.25rem;
+    }
+
+    .answer-wrapper:first-of-type::before {
+        content: "1";
+    }
+
+    .answer-wrapper:nth-of-type(2)::before {
+        content: "2";
+    }
+
+    .answer-wrapper:nth-of-type(3)::before {
+        content: "3";
+    }
+
+    .answer-wrapper:nth-of-type(4)::before {
+        content: "4";
+    }
+
+    .btn-control:focus {
+        outline: 0.25rem var(--clr-text) solid;
     }
 }

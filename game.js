@@ -37,18 +37,21 @@ function chooseGame(e) {
 }
 
 function startGame() {
-    btnStart.hidden = true;
-    btnCheck.hidden = false;
-    screenGame.hidden = false;
+    if (document.querySelector(".chosen")) {
+        btnStart.hidden = true;
+        btnCheck.hidden = false;
+        screenGame.hidden = false;
 
-    const chosenGame = document.querySelector(".chosen").id;
-    loadGameData(chosenGame);
+        const chosenGame = document.querySelector(".chosen").id;
+        loadGameData(chosenGame);
+    }
 }
 
 function loadGameData(game) {
     fetch(`./data/${game}.json`)
         .then((res) => res.json())
         .then((data) => {
+            data = shuffle(data);
             questions.push(...data);
             round = 0;
             renderGame(round);
@@ -61,64 +64,80 @@ function renderGame(count) {
     btnNext.hidden = true;
 
     const question = questions[count].question;
-    const answers = questions[count].answers;
+    let answers = questions[count].answers;
 
     const questionWrapper = document.querySelector("#question");
     const answersWrapper = document.querySelector("#answers");
 
     correctAnswer = answers.slice(0, 1)[0];
-    console.log(correctAnswer);
 
-    questionWrapper.innerText = question;
+    questionWrapper.innerHTML = marked.parse(question);
     answersWrapper.innerText = "";
+    answers = shuffle(answers);
 
-    answers.forEach((answer) => {
-        const wrapper = document.createElement("li");
-        wrapper.classList.add("answer-wrapper");
-
-        const input = document.createElement("input");
-        input.type = "radio";
-        input.name = "answer";
-        input.id = createRandomId();
-        input.classList.add("answer-input");
-        input.dataset.answer = answer;
-
-        const label = document.createElement("label");
-        label.setAttribute("for", input.id);
-        label.innerText = answer;
-        label.classList.add("answer-text");
-
-        wrapper.append(input, label);
-        answersWrapper.append(wrapper);
-    });
+    answers.forEach((answer) => renderAnswer(answer, answersWrapper));
 
     answersWrapper.addEventListener("change", highlightAnswer);
     btnCheck.addEventListener("click", checkAnswer);
+    document.addEventListener("keydown", highlightAnswer);
+    document.addEventListener("keydown", checkAnswer);
+
+    const answersFields = answersWrapper.querySelectorAll(".answer-wrapper");
+
+    for (let i = 0; i < answersFields.length; i++) {
+        answersFields[i].dataset.count = i + 1;
+    }
 }
 
-function checkAnswer() {
-    const choiceField = document.querySelector(".active");
-    const chosenAnswer = choiceField.querySelector(".answer-input").dataset.answer;
+function renderAnswer(answer, destination) {
+    const wrapper = document.createElement("li");
+    wrapper.classList.add("answer-wrapper");
 
-    if (choiceField) {
-        if (chosenAnswer === correctAnswer) {
-            choiceField.classList.add("correct");
-        } else if (chosenAnswer !== correctAnswer) {
-            const correctField = document.querySelector(
-                `[data-answer="${correctAnswer}"]`
-            ).parentElement;
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "answer";
+    input.id = createRandomId();
+    input.classList.add("answer-input");
+    input.dataset.answer = answer;
 
-            choiceField.classList.add("wrong");
-            correctField.classList.add("correct");
+    const label = document.createElement("label");
+    label.setAttribute("for", input.id);
+    label.innerText = answer;
+    label.classList.add("answer-text");
+
+    wrapper.append(input, label);
+    destination.append(wrapper);
+}
+
+function checkAnswer(e) {
+    if (e.key === "Enter" || !e.key) {
+        const choiceField = document.querySelector(".active");
+        const chosenAnswer = choiceField.querySelector(".answer-input").dataset.answer;
+        if (choiceField) {
+            if (chosenAnswer === correctAnswer) {
+                choiceField.classList.add("correct");
+            } else if (chosenAnswer !== correctAnswer) {
+                const correctField = document.querySelector(
+                    `[data-answer="${correctAnswer}"]`
+                ).parentElement;
+
+                choiceField.classList.add("wrong");
+
+                setTimeout(function () {
+                    correctField.classList.add("correct");
+                }, 1000);
+            }
+
+            choiceField.parentElement.removeEventListener("change", highlightAnswer);
+            btnCheck.removeEventListener("click", checkAnswer);
+            document.removeEventListener("keydown", highlightAnswer);
+            document.removeEventListener("keydown", checkAnswer);
+
+            btnCheck.hidden = true;
+            btnNext.hidden = false;
+
+            btnNext.addEventListener("click", nextQuestion);
         }
-
-        choiceField.parentElement.removeEventListener("change", highlightAnswer);
-        btnCheck.removeEventListener("click", checkAnswer);
-
-        btnCheck.hidden = true;
-        btnNext.hidden = false;
-
-        btnNext.addEventListener("click", nextQuestion);
     }
 }
 
@@ -129,12 +148,21 @@ function nextQuestion() {
 }
 
 function highlightAnswer(e) {
-    console.log(e.target);
-    if (document.querySelector(".active")) {
-        document.querySelector(".active").classList.toggle("active");
+    if (e.key) {
+        if (e.key === "1" || e.key === "2" || e.key === "3" || e.key === "4") {
+            if (document.querySelector(".active")) {
+                document.querySelector(".active").classList.toggle("active");
+            }
+            const chosenAnswer = document.querySelector(`[data-count="${e.key}"]`);
+            chosenAnswer.classList.toggle("active");
+        }
+    } else {
+        if (document.querySelector(".active")) {
+            document.querySelector(".active").classList.toggle("active");
+        }
+        const chosenAnswer = e.target.parentElement;
+        chosenAnswer.classList.toggle("active");
     }
-    const chosenAnswer = e.target.parentElement;
-    chosenAnswer.classList.toggle("active");
 }
 
 function styleChosenOption(option) {
@@ -152,4 +180,12 @@ function createRandomId() {
     }
 
     return id;
+}
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }
