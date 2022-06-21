@@ -1,0 +1,28 @@
+[
+    {
+        "question": "Was für Inhalt könnte ein `<aside>`-Element semantisch haben?",
+        "answers": [
+            "Werbung",
+            "Die Navigation als Seitenleiste",
+            "Wichtige Ergänzungen",
+            "Hauptinhalt der Seite"
+        ]
+    },
+    {
+        "question": "Wer hat HTML entwickelt?",
+        "answers": ["Tim Berners Lee", "Steve Jobs", "Bill Gates", "Nico Koenig"]
+    },
+    {
+        "question": "Mit welchem Element kann auf andere Inhalte verlinkt werden?",
+        "answers": ["<a>", "<link>", "<at>", "<href>"]
+    },
+    {
+        "question": "Welche E-Mail-Verlinkung ist korrekt?",
+        "answers": [
+            "<a href='mailto:hello@gmail.com'>",
+            "<link href='mailto:hello@gmail.com'>",
+            "<a src='mail:hello@gmail.com'>",
+            "<a href='mail:hello@gmail.com'>"
+        ]
+    }
+]

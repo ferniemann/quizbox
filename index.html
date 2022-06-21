@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quizbox – Coding Bootcamps Europe</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Mono:100,200,300,regular,500,600,700,100italic,200italic,300italic,italic,500italic,600italic,700italic"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+    <body>
+        <header class="page-header">
+            <div class="logo">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="64"
+                    height="64"
+                    viewBox="0 0 48 48"
+                    style="fill: #000000"
+                >
+                    <g data-name="25-box">
+                        <polygon fill="#a97c50" points="24 17 24 21 47 15 47 11 24 17"></polygon>
+                        <polygon fill="#efb175" points="24 21 1 15 1 11 24 17 24 21"></polygon>
+                        <polygon
+                            fill="#a97c50"
+                            points="24 4 1 10 1 11 24 17 47 11 47 10 24 4"
+                        ></polygon>
+                        <polygon
+                            fill="#a97c50"
+                            points="24 21 24 44 45 38 45 15.522 24 21"
+                        ></polygon>
+                        <polygon
+                            fill="#efb175"
+                            points="3 15.522 3 38 24 44 24 21 3 15.522"
+                        ></polygon>
+                        <path
+                            d="M47.252,9.03223l-23-6a1.001,1.001,0,0,0-.5039,0l-23,6A1.00079,1.00079,0,0,0,0,10v5a1.00079,1.00079,0,0,0,.74805.96777L2,16.29437V38a1.00079,1.00079,0,0,0,.72559.96191l21,6a1.0075,1.0075,0,0,0,.54882,0l21-6A1.00079,1.00079,0,0,0,46,38V16.29437l1.252-.3266A1.00079,1.00079,0,0,0,48,15V10A1.00079,1.00079,0,0,0,47.252,9.03223ZM24,5.0332l20.95526,5.46674L24,15.96649,3.04474,10.49994ZM2,14.22754V12.294l21,5.47851v1.93359ZM4,16.8161l19,4.95654V42.67426L4,37.24609Zm40,20.43L25,42.67426V21.77264L44,16.8161Zm2-23.01855L25,19.70605V17.77246L46,12.294Z"
+                        ></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="title">
+                <h1 class="main-title">Quizbox</h1>
+                <p class="sub-title">Coding Bootcamps Europe</p>
+            </div>
+            <input type="checkbox" name="toggle-mode" id="toggle-mode" />
+            <label for="toggle-mode" class="toggle-wrapper">
+                <div class="track">
+                    <div class="ball">
+                        <div class="sun">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                x="0px"
+                                y="0px"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M 11 0 L 11 3 L 13 3 L 13 0 L 11 0 z M 4.2226562 2.8085938 L 2.8085938 4.2226562 L 4.9296875 6.34375 L 6.34375 4.9296875 L 4.2226562 2.8085938 z M 19.777344 2.8085938 L 17.65625 4.9296875 L 19.070312 6.34375 L 21.191406 4.2226562 L 19.777344 2.8085938 z M 12 5 C 8.1458514 5 5 8.1458514 5 12 C 5 15.854149 8.1458514 19 12 19 C 15.854149 19 19 15.854149 19 12 C 19 8.1458514 15.854149 5 12 5 z M 12 7 C 14.773268 7 17 9.2267316 17 12 C 17 14.773268 14.773268 17 12 17 C 9.2267316 17 7 14.773268 7 12 C 7 9.2267316 9.2267316 7 12 7 z M 0 11 L 0 13 L 3 13 L 3 11 L 0 11 z M 21 11 L 21 13 L 24 13 L 24 11 L 21 11 z M 4.9296875 17.65625 L 2.8085938 19.777344 L 4.2226562 21.191406 L 6.34375 19.070312 L 4.9296875 17.65625 z M 19.070312 17.65625 L 17.65625 19.070312 L 19.777344 21.191406 L 21.191406 19.777344 L 19.070312 17.65625 z M 11 21 L 11 24 L 13 24 L 13 21 L 11 21 z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="moon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                x="0px"
+                                y="0px"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 30 30"
+                            >
+                                <path
+                                    d="M22,21c-6.627,0-12-5.373-12-12c0-1.95,0.475-3.785,1.3-5.412C6.485,5.148,3,9.665,3,15c0,6.627,5.373,12,12,12 c4.678,0,8.72-2.682,10.7-6.588C24.534,20.79,23.292,21,22,21z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </header>
+        <main>
+            <section id="choose-game">
+                <h2 class="main-heading">Bitte wähle ein Quiz aus:</h2>
+                <form id="games">
+                    <ul class="games-list">
+                        <li class="games-option">
+                            <input type="radio" name="game" id="html" class="choose-game" />
+                            <label for="html">HTML</label>
+                        </li>
+                        <li class="games-option">
+                            <input type="radio" name="game" id="css-basics" class="choose-game" />
+                            <label for="css-basics">CSS Basics</label>
+                        </li>
+                    </ul>
+                </form>
+            </section>
+            <section id="question-wrapper">
+                <p id="question"></p>
+                <ul id="answers"></ul>
+            </section>
+            <section id="controls">
+                <form id="buttons" onsubmit="return false">
+                    <button id="btn-start" class="btn-control">Starten</button>
+                    <button id="btn-check" class="btn-control">Check</button>
+                    <button id="btn-next" class="btn-control">Weiter</button>
+                </form>
+            </section>
+        </main>
+        <script src="mode.js"></script>
+        <script src="game.js"></script>
+    </body>
+</html>
